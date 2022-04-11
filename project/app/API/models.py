@@ -1,4 +1,4 @@
-from ..database import db
+from app import db
 
 class AccessLog(db.Model):
     __tablename__ = "access_log"
@@ -13,3 +13,4 @@ class AccessLog(db.Model):
     request_file_size = db.Column(db.String(100), nullable=False)
     referer = db.Column(db.String(300), nullable=False)
     user_agent = db.Column(db.String(300), nullable=False)
+
