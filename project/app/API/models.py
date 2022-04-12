@@ -1,4 +1,4 @@
-from app import db
+from ..database import db
 
 class AccessLog(db.Model):
     __tablename__ = "access_log"

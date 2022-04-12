@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify
 from .models import AccessLog
-# from .crud import *
 
 
 module = Blueprint('API', __name__)
