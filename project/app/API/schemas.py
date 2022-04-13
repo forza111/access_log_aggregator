@@ -1,11 +1,10 @@
-from flask_marshmallow import Marshmallow
-
-from .models import AccessLog
-
-ma = Marshmallow()
+from .models import AccessLogModel
+from .ma import ma
 
 
 class AccessLogSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        model = AccessLog
-        load_instance = True
+        model = AccessLogModel
+
+
+access_log_schema = AccessLogSchema(many=True, exclude=("id",))

@@ -1,15 +1,13 @@
 from flask import Blueprint, jsonify
-from .models import AccessLog
+from .models import AccessLogModel
+from .schemas import access_log_schema
 
 
-module = Blueprint('API', __name__)
+api = Blueprint('API', __name__, url_prefix="/api")
 
-# @module.route("/")
-# def hello_world():
-#     response = AccessLog.query.first()
-#     return {"ip": str(response.ip_address)}
 
-@module.route("/")
-def hello_world():
-    response = AccessLog.query.all()
-    return jsonify(json_list=[i.serialize for i in response])
+@api.route("/access_logs")
+def get_access_logs():
+    logs = AccessLogModel.query.all()
+    response = access_log_schema.dump(logs)
+    return jsonify(response)

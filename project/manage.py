@@ -2,7 +2,7 @@ from flask.cli import FlaskGroup
 
 from app import app
 from app.database import db
-from app.API.models import AccessLog
+from app.API.models import AccessLogModel
 
 cli = FlaskGroup(app)
 
@@ -16,7 +16,7 @@ def create_db():
 
 @cli.command("seed_db")
 def seed_db():
-    db.session.add(AccessLog(ip_address='192.168.123.132',
+    db.session.add(AccessLogModel(ip_address='192.168.123.132',
                              client_id='-',
                              user_id='-',
                              date='2022-01-01 21:24',

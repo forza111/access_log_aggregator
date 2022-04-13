@@ -1,6 +1,6 @@
 from ..database import db
 
-class AccessLog(db.Model):
+class AccessLogModel(db.Model):
     __tablename__ = "access_log"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -14,16 +14,3 @@ class AccessLog(db.Model):
     referer = db.Column(db.String(300), nullable=False)
     user_agent = db.Column(db.String(300), nullable=False)
 
-    @property
-    def serialize(self):
-        return {
-            "ip": self.ip_address,
-            "client_id": self.client_id,
-            "user_id": self.user_id,
-            "date": self.date,
-            "client_request": self.client_request,
-            "status_code": self.status_code,
-            "request_file_size": self.request_file_size,
-            "referer": self.referer,
-            "user_agent": self.user_agent
-        }
