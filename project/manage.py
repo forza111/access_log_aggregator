@@ -1,9 +1,10 @@
 from flask.cli import FlaskGroup
 
-from app import app
+from app import create_app
 from app.database import db
 from app.API.models import AccessLogModel
 
+app = create_app()
 cli = FlaskGroup(app)
 
 
@@ -17,10 +18,10 @@ def create_db():
 @cli.command("seed_db")
 def seed_db():
     db.session.add(AccessLogModel(
-        ip_address='192.168.123.132',
+        ip_address='192.168.123.142',
         client_id='-',
         user_id='-',
-        date='2022-01-01 21:24',
+        date='2018-01-01 21:24',
         client_request='GET /apache_pb.gif HTTP/1.0',
         status_code='200',
         request_file_size='64',

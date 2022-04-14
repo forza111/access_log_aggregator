@@ -3,3 +3,5 @@ Flask-SQLAlchemy==2.5.1
 psycopg2-binary==2.9.3
 marshmallow-sqlalchemy==0.28.0
 flask-marshmallow==0.14.0
+flask_restx==0.5.1
+pytest==7.1.1

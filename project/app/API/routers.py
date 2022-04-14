@@ -1,20 +1,31 @@
 from flask import Blueprint, jsonify, request
+from flask_restx import Api
 
 from .models import AccessLogModel
 from .schemas import access_log_schema
 from ..database import db
 
 
-api = Blueprint('API', __name__, url_prefix="/api")
+api_bp = Blueprint('API', __name__, url_prefix="/api")
+authorizations = {"Bearer": {"type": "apiKey", "in": "header", "name": "Authorization"}}
+
+api = Api(
+    api_bp,
+    version="1.0",
+    title="Flask API with JWT-Based Authentication",
+    description="Welcome to the Swagger UI documentation site!",
+    doc="/ui",
+    authorizations=authorizations,
+)
 
 
-@api.route("/access_logs")
+@api_bp.route("/access_logs")
 def get_access_logs():
     logs = db.session.query(AccessLogModel).all()
     response = access_log_schema.dump(logs)
     return jsonify(response)
 
-@api.route("/access_logs/<ip>")
+@api_bp.route("/access_logs/<ip>")
 def get_access_logs_by_ip(ip):
     args = request.args
     date_before = args.get("date_before")
