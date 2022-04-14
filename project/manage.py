@@ -16,16 +16,17 @@ def create_db():
 
 @cli.command("seed_db")
 def seed_db():
-    db.session.add(AccessLogModel(ip_address='192.168.123.132',
-                             client_id='-',
-                             user_id='-',
-                             date='2022-01-01 21:24',
-                             client_request='GET /apache_pb.gif HTTP/1.0',
-                             status_code='200',
-                             request_file_size='64',
-                             referer='http://www.example.com/start.html',
-                             user_agent='Mozilla/4.08 [en] (Win98; I ;Nav)')
-                   )
+    db.session.add(AccessLogModel(
+        ip_address='192.168.123.132',
+        client_id='-',
+        user_id='-',
+        date='2022-01-01 21:24',
+        client_request='GET /apache_pb.gif HTTP/1.0',
+        status_code='200',
+        request_file_size='64',
+        referer='http://www.example.com/start.html',
+        user_agent='Mozilla/4.08 [en] (Win98; I ;Nav)')
+    )
     db.session.commit()
 
 
