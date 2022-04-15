@@ -1,10 +1,12 @@
+from flask_bcrypt import Bcrypt
 from flask import Flask
-# from flask_restplus import Api
+
 
 from config import Config
 from .API.routers import api_bp
 from .database import db
 from .API.schemas import ma
+from . import auth
 
 
 def create_app():
@@ -14,3 +16,5 @@ def create_app():
     app.register_blueprint(api_bp)
     ma.init_app(app)
     return app
+
+bcrypt = Bcrypt()
